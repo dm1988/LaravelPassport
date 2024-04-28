@@ -19,8 +19,8 @@ use App\Http\Controllers\UserController;
 */
 
 // UserInfo endpoint
-Route::middleware('auth:api')->get('/user/get', [UserController::class, 'get']);
-// Route::middleware('auth:api')->get('/api/user/get', 'App\Http\Controllers\UserController@get');
+// Route::middleware('auth:api')->get('/user/get', [UserController::class, 'get']);
+Route::middleware('auth:api')->get('/api/user/get', 'App\Http\Controllers\UserController@get');
 // OAuth token
 // Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 

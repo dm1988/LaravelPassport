@@ -10,7 +10,6 @@ class UserController extends Controller
 {
     public function get(Request $request)
     {
-      dd('test');
       $user_id = Auth::id();
       $user = User::find($user_id);
       return $user;
