@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
-use App\Http\Controllers\UserController; 
+use App\Http\Controllers\UserController;
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,18 +22,22 @@ use App\Http\Controllers\UserController;
 
 // UserInfo endpoint
 // Route::middleware('auth:api')->get('/user/get', [UserController::class, 'get']);
-Route::middleware('auth:api')->get('/api/user/get', 'App\Http\Controllers\UserController@get');
+Route::middleware('auth:api')->get('/user/get', 'App\Http\Controllers\UserController@get');
+Route::middleware('auth:api')->post('/user/get', 'App\Http\Controllers\UserController@get');
 // OAuth token
 // Route::post('/oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    dd('test');
     return $request->user();
 });
 
 Route::middleware('auth:api')->get('/posts', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/api-testing', function (Request $request) {
+    return ['message' => 'all good'];
+})->middleware('auth:api');
 
 // Register
 Route::post('/register', 'Auth\RegisterController@register');
